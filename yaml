@@ -1,0 +1,26 @@
+名字: Build & Publish Release APK
+
+在:
+推:
+标签:
+      - '*'
+
+工作:
+Gradle:
+    runs-on: ubuntu-latest
+步骤:
+    - 名字: 结账代码
+用途: actions/checkout@v2
+    - 名字: 安装jdk
+用途: actions/setup-java@v1
+与:
+        java-version: 11
+    - 名字: 使Gradle可执行
+跑: chmod +x ./gradlew
+    - 名字: 构建发布APK
+跑: ./gradlew汇编释放
+    - 名字: 使用集线器释放
+用途: sangatdesai/release-apk@main
+env:
+        GITHUB_TOKEN: ${{ secrets.TOKEN }}
+        APP_FOLDER: 应用程序
